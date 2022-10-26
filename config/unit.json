@@ -1,0 +1,34 @@
+{
+    "listeners": {
+        "*:80": {
+            "pass": "routes"
+        }
+    },
+    "routes": [
+        {
+            "match": {
+                "uri": "/staticfiles/*"
+            },
+            "action": {
+                "share": "/home/tobias/Demo/Demo/$uri"
+            }
+        },
+        {
+            "action": {
+                "pass": "applications/djangochannels"
+            }
+        }
+    ],
+    "applications": {
+        "djangochannels": {
+            "type": "python 3.9",
+            "path": "/home/tobias/Demo/Demo",
+            "home": "/home/tobias/Demo/Demo/env/",
+            "module": "Demo.asgi",
+            "protocol": "asgi",
+            "environment": {
+                "DJANGO_SETTINGS_MODULE": "Demo.settings"
+            }
+        }
+    }
+}
